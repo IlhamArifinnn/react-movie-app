@@ -1,0 +1,15 @@
+/* Mengimpor font Inter dari Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+/* Mengimpor Tailwind CSS */
+@import "tailwindcss";
+
+/* Menambahkan variabel font-inter ke tema */
+@theme {
+  --font-inter: "Inter", sans-serif;
+}
+
+/* Mengatur gaya untuk body */
+body {
+  font-family: var(--font-inter);
+}
