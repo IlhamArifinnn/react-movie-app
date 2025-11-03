@@ -1,14 +1,42 @@
-export default function MovieList() {
+import ErrorAlert from "./ErrorAlert";
+import MovieCard from "./MovieCard";
+
+const MovieList = ({ movies, loading, error, onEdit, onDelete }) => {
   // Error state
-  
+  if (error) {
+    return <ErrorAlert message={error} />;
+  }
 
   // Loading state
-
+  if (loading) {
+    return (
+      <div className="col-span-full text-center py-12">
+        <p className="text-slate-400 font-medium">Memuat data film...</p>
+      </div>
+    );
+  }
 
   // Empty state
+  if (movies.length === 0) {
+    return (
+      <div className="col-span-full text-center py-12">
+        <p className="text-slate-400 font-medium">Belum ada film 🎬</p>
+      </div>
+    );
+  }
 
   return (
-    // looping data film disini menggunakan MovieCard
-    <div>MovieList</div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
+      ))}
+    </div>
   );
-}
+};
+
+export default MovieList;

@@ -1,8 +1,24 @@
-// Mengimpor fungsi createBrowserRouter dari react-router-dom
 import { createBrowserRouter } from "react-router-dom";
+import DefaultLayout from "./layouts/default";
+import SomethingWrong from "./components/ui/SomethingWrong";
+import NotFoundPage from "./pages/NotFoundPage";
+import MoviePage from "./pages/MoviePage";
 
-// Membuat router kosong menggunakan createBrowserRouter
-const router = createBrowserRouter([]);
+const router = createBrowserRouter([
+  {
+    element: <DefaultLayout />,
+    children: [
+      {
+        path: "/",
+        element: <MoviePage />,
+        errorElement: <SomethingWrong />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
+]);
 
-// Mengekspor router sebagai ekspor default
 export default router;
