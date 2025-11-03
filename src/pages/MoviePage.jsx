@@ -1,5 +1,4 @@
 import { Plus } from "lucide-react";
-
 import { MovieModal, MovieList } from "../components";
 import { useMovieList, useMovieModal } from "../hooks";
 
@@ -7,7 +6,6 @@ const MoviePage = () => {
   const { movies, loading, error, createMovie, updateMovie, deleteMovie } =
     useMovieList();
 
-  // Kirim parameter secara terpisah, bukan sebagai object
   const {
     isModalOpen,
     editingMovie,
@@ -20,22 +18,24 @@ const MoviePage = () => {
 
   return (
     <>
-      {/* Header */}
-      <div className="flex justify-between items-center mb-12">
+      <div className="flex justify-between items-center mb-12 pt-16">
         <div>
-          <h2 className="text-2xl font-bold text-white mb-2">Daftar Film</h2>
-          <p className="text-slate-400">Kelola koleksi film favorit Anda</p>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            Daftar Film
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400">
+            Kelola koleksi film favorit Anda
+          </p>
         </div>
         <button
           onClick={openAddModal}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition"
+          className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
         >
           <Plus size={20} />
           Tambah Film
         </button>
       </div>
 
-      {/* Movie List */}
       <MovieList
         movies={movies}
         loading={loading}
@@ -44,7 +44,6 @@ const MoviePage = () => {
         onDelete={removeMovie}
       />
 
-      {/* Modal */}
       <MovieModal
         isOpen={isModalOpen}
         title={editingMovie ? "Edit Film" : "Tambah Film Baru"}

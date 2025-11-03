@@ -2,25 +2,26 @@ import ErrorAlert from "./ErrorAlert";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ movies, loading, error, onEdit, onDelete }) => {
-  // Error state
   if (error) {
     return <ErrorAlert message={error} />;
   }
 
-  // Loading state
   if (loading) {
     return (
       <div className="col-span-full text-center py-12">
-        <p className="text-slate-400 font-medium">Memuat data film...</p>
+        <p className="text-gray-600 dark:text-gray-400 font-medium">
+          Memuat data film...
+        </p>
       </div>
     );
   }
 
-  // Empty state
   if (movies.length === 0) {
     return (
       <div className="col-span-full text-center py-12">
-        <p className="text-slate-400 font-medium">Belum ada film 🎬</p>
+        <p className="text-gray-600 dark:text-gray-400 font-medium">
+          Belum ada film 🎬
+        </p>
       </div>
     );
   }

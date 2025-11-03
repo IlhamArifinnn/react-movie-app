@@ -4,15 +4,13 @@ import Header from "./components/Header";
 
 const DefaultLayout = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
       <Header />
-
       <main className="flex-1 p-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <Outlet />
         </div>
       </main>
-
       <Footer />
     </div>
   );

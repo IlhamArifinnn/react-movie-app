@@ -4,9 +4,8 @@ const MovieCard = ({ movie, onEdit, onDelete }) => {
   const genres = Array.isArray(movie.genre) ? movie.genre : [];
 
   return (
-    <div className="bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition border border-slate-700 flex flex-col h-full">
-      {/* Poster */}
-      <div className="relative h-56 overflow-hidden bg-linear-to-br from-blue-600 to-purple-600">
+    <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition border border-gray-200 dark:border-slate-700 flex flex-col h-full">
+      <div className="relative h-56 overflow-hidden bg-linear-to-br from-green-500 to-emerald-600 dark:from-green-600 dark:to-emerald-700">
         {movie.poster_url ? (
           <img
             src={movie.poster_url}
@@ -22,21 +21,19 @@ const MovieCard = ({ movie, onEdit, onDelete }) => {
           </div>
         )}
 
-        {/* Rating Badge */}
-        <div className="absolute top-3 right-3 bg-amber-100 text-black px-3 py-1 rounded-full font-bold text-sm flex items-center gap-1">
+        <div className="absolute top-3 right-3 bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-bold text-sm flex items-center gap-1">
           <span>⭐</span>
           {movie.rating}
         </div>
       </div>
 
-      {/* Content */}
       <div className="p-5 flex-1 flex flex-col">
-        <h3 className="text-xl font-bold text-white mb-1 line-clamp-2">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 line-clamp-2">
           {movie.title}
         </h3>
 
         {movie.director && (
-          <div className="flex items-center gap-2 text-slate-400 text-sm mb-3">
+          <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm mb-3">
             <User size={14} />
             <span>{movie.director}</span>
           </div>
@@ -47,7 +44,7 @@ const MovieCard = ({ movie, onEdit, onDelete }) => {
             {genres.map((genre, idx) => (
               <span
                 key={idx}
-                className="bg-blue-900/50 text-blue-300 px-2 py-1 rounded text-xs font-semibold"
+                className="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-2 py-1 rounded text-xs font-semibold"
               >
                 {genre}
               </span>
@@ -56,13 +53,12 @@ const MovieCard = ({ movie, onEdit, onDelete }) => {
         )}
 
         {movie.description && (
-          <p className="text-slate-400 text-sm mb-3 line-clamp-2 flex-1">
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2 flex-1">
             {movie.description}
           </p>
         )}
 
-        {/* Meta Info */}
-        <div className="flex items-center gap-4 text-slate-400 text-xs mb-4 py-2 border-t border-slate-700">
+        <div className="flex items-center gap-4 text-gray-500 dark:text-gray-400 text-xs mb-4 py-2 border-t border-gray-200 dark:border-slate-700">
           {movie.release_date && (
             <div className="flex items-center gap-1">
               <Calendar size={14} />
@@ -79,18 +75,17 @@ const MovieCard = ({ movie, onEdit, onDelete }) => {
           )}
         </div>
 
-        {/* Buttons */}
         <div className="flex gap-2 mt-auto">
           <button
             onClick={() => onEdit(movie)}
-            className="flex-1 flex items-center justify-center gap-2 bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded-lg font-semibold transition"
+            className="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg font-semibold transition-colors"
           >
             <Edit2 size={16} />
             Edit
           </button>
           <button
             onClick={() => onDelete(movie.id)}
-            className="flex-1 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold transition"
+            className="flex-1 flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-semibold transition-colors"
           >
             <Trash2 size={16} />
             Hapus

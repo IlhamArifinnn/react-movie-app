@@ -7,11 +7,10 @@ const Input = ({
   register,
   errors,
 }) => {
-  // membuat variabel errorMessage untuk menyimpan pesan error dari field input ini
   const errorMessage = errors?.[name]?.message;
   return (
     <div>
-      <label className="block text-slate-300 text-xs font-semibold mb-1">
+      <label className="block text-gray-700 dark:text-gray-300 text-xs font-semibold mb-1">
         {label} <span className="text-red-500">*</span>
       </label>
       <input
@@ -19,9 +18,11 @@ const Input = ({
         placeholder={placeholder}
         step={step}
         {...register?.(name)}
-        className={`w-full bg-slate-700 text-white px-3 py-1.5 rounded text-sm border ${
-          errorMessage ? "border-red-500" : "border-slate-600"
-        } focus:border-blue-500 outline-none`}
+        className={`w-full bg-white dark:bg-slate-800 text-gray-900 dark:text-white px-3 py-1.5 rounded text-sm border ${
+          errorMessage
+            ? "border-red-500"
+            : "border-gray-300 dark:border-slate-600"
+        } focus:border-green-500 outline-none transition-colors`}
       />
       {errorMessage && (
         <p className="text-red-500 text-xs mt-0.5">{errorMessage}</p>

@@ -1,15 +1,17 @@
 /* Mengimpor font Inter dari Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 
 /* Mengimpor Tailwind CSS */
 @import "tailwindcss";
 
-/* Menambahkan variabel font-inter ke tema */
+/* Menambahkan variabel font-plus-jakarta-sans ke tema */
 @theme {
-  --font-inter: "Inter", sans-serif;
+  --font-plus-jakarta-sans: "Plus Jakarta Sans", sans-serif;
 }
 
 /* Mengatur gaya untuk body */
 body {
-  font-family: var(--font-inter);
+  font-family: var(--font-plus-jakarta-sans);
 }
+
+@custom-variant dark (&:where(.dark, .dark *));

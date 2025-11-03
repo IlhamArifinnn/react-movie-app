@@ -3,9 +3,14 @@ import { RouterProvider } from "react-router-dom";
 
 // mengimpor router dari file router.js
 import router from "./router";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider>
+      <RouterProvider router={router} />;
+    </ThemeProvider>
+  );
 };
 
 export default App;
