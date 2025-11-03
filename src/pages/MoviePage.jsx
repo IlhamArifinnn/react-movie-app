@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import { MovieModal, MovieList } from "../components";
 import { useMovieList, useMovieModal } from "../hooks";
+import MovieDetailModal from "../components/ui/MovieDetailModal";
 
 const MoviePage = () => {
   const { movies, loading, error, createMovie, updateMovie, deleteMovie } =
@@ -9,9 +10,12 @@ const MoviePage = () => {
   const {
     isModalOpen,
     editingMovie,
+    detailMovie,
     openAddModal,
     openEditModal,
+    openDetailModal,
     closeModal,
+    closeDetailModal,
     saveMovie,
     removeMovie,
   } = useMovieModal(createMovie, updateMovie, deleteMovie);
@@ -29,27 +33,39 @@ const MoviePage = () => {
         </div>
         <button
           onClick={openAddModal}
-          className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+          className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm px-5 py-3 rounded-lg font-semibold transition-colors"
         >
           <Plus size={20} />
           Tambah Film
         </button>
       </div>
 
+      {/* Daftar Film */}
       <MovieList
         movies={movies}
         loading={loading}
         error={error}
         onEdit={openEditModal}
         onDelete={removeMovie}
+        onViewDetail={openDetailModal}
       />
 
+      {/* Modal untuk Add/Edit */}
       <MovieModal
         isOpen={isModalOpen}
         title={editingMovie ? "Edit Film" : "Tambah Film Baru"}
         initialData={editingMovie}
         onSubmit={saveMovie}
         onClose={closeModal}
+      />
+
+      {/* Modal untuk View Detail */}
+      <MovieDetailModal
+        isOpen={!!detailMovie}
+        movie={detailMovie}
+        onClose={closeDetailModal}
+        onEdit={openEditModal}
+        onDelete={removeMovie}
       />
     </>
   );

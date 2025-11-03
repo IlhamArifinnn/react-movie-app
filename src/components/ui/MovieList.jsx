@@ -1,7 +1,14 @@
 import ErrorAlert from "./ErrorAlert";
 import MovieCard from "./MovieCard";
 
-const MovieList = ({ movies, loading, error, onEdit, onDelete }) => {
+const MovieList = ({
+  movies,
+  loading,
+  error,
+  onEdit,
+  onDelete,
+  onViewDetail,
+}) => {
   if (error) {
     return <ErrorAlert message={error} />;
   }
@@ -34,6 +41,7 @@ const MovieList = ({ movies, loading, error, onEdit, onDelete }) => {
           movie={movie}
           onEdit={onEdit}
           onDelete={onDelete}
+          onViewDetail={onViewDetail}
         />
       ))}
     </div>

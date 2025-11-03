@@ -13,22 +13,39 @@ export const useMovieModal = (onCreate, onUpdate, onDelete) => {
   // Membuat state untuk menyimpan data film yang sedang diedit (null jika menambah film baru)
   const [editingMovie, setEditingMovie] = useState(null);
 
+  // membuat state untuk detail movie
+  const [detailMovie, setDetailMovie] = useState(null);
+
   // Membuka modal untuk menambah film baru
   const openAddModal = () => {
     setEditingMovie(null);
+    setDetailMovie(null);
     setIsModalOpen(true);
   };
 
   // Membuka modal untuk mengedit film yang sudah ada
   const openEditModal = (movie) => {
     setEditingMovie(movie);
+    setDetailMovie(null);
     setIsModalOpen(true);
+  };
+
+  // Membuka modal untuk melihat detail film
+  const openDetailModal = (movie) => {
+    setDetailMovie(movie);
+    setEditingMovie(null);
   };
 
   // Menutup semua modal dan mengosongkan data editingMovie
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingMovie(null);
+    setDetailMovie(null);
+  };
+
+  // Menutup modal detail movie
+  const closeDetailModal = () => {
+    setDetailMovie(null);
   };
 
   // Handle submit form untuk menambah atau mengedit film
@@ -50,9 +67,12 @@ export const useMovieModal = (onCreate, onUpdate, onDelete) => {
   return {
     isModalOpen,
     editingMovie,
+    detailMovie,
     openAddModal,
     openEditModal,
+    openDetailModal,
     closeModal,
+    closeDetailModal,
     saveMovie,
     removeMovie,
   };

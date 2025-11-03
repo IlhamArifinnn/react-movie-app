@@ -1,16 +1,16 @@
-import { Edit2, Trash2, Clock, Calendar, User } from "lucide-react";
+import { Edit2, Trash2, Clock, Calendar, User, Eye } from "lucide-react";
 
-const MovieCard = ({ movie, onEdit, onDelete }) => {
+const MovieCard = ({ movie, onEdit, onDelete, onViewDetail }) => {
   const genres = Array.isArray(movie.genre) ? movie.genre : [];
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition border border-gray-200 dark:border-slate-700 flex flex-col h-full">
-      <div className="relative h-56 overflow-hidden bg-linear-to-br from-green-500 to-emerald-600 dark:from-green-600 dark:to-emerald-700">
+    <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 flex flex-col h-full group">
+      <div className="relative h-56 overflow-hidden bg-gradient-to-br from-green-500 to-emerald-600 dark:from-green-600 dark:to-emerald-700">
         {movie.poster_url ? (
           <img
             src={movie.poster_url}
             alt={movie.title}
-            className="w-full h-full object-cover hover:scale-105 transition duration-300"
+            className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
             onError={(e) => {
               e.target.style.display = "none";
             }}
@@ -21,14 +21,29 @@ const MovieCard = ({ movie, onEdit, onDelete }) => {
           </div>
         )}
 
+        {/* Rating Badge */}
         <div className="absolute top-3 right-3 bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-bold text-sm flex items-center gap-1">
           <span>⭐</span>
           {movie.rating}
         </div>
+
+        {/* View Detail Button - Hover Effect */}
+        <button
+          onClick={() => onViewDetail(movie)}
+          className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100"
+        >
+          <div className="bg-white/90 dark:bg-slate-800/90 text-gray-900 dark:text-white px-4 py-2 rounded-lg flex items-center gap-2 font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 cursor-pointer">
+            <Eye size={16} />
+            Lihat Detail
+          </div>
+        </button>
       </div>
 
       <div className="p-5 flex-1 flex flex-col">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 line-clamp-2">
+        <h3
+          className="text-xl font-bold text-gray-900 dark:text-white mb-1 line-clamp-2 cursor-pointer hover:text-green-600 dark:hover:text-green-400 transition-colors"
+          onClick={() => onViewDetail(movie)}
+        >
           {movie.title}
         </h3>
 
@@ -77,15 +92,22 @@ const MovieCard = ({ movie, onEdit, onDelete }) => {
 
         <div className="flex gap-2 mt-auto">
           <button
+            onClick={() => onViewDetail(movie)}
+            className="flex-1 flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold transition-colors text-sm cursor-pointer"
+          >
+            <Eye size={16} />
+            Detail
+          </button>
+          <button
             onClick={() => onEdit(movie)}
-            className="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg font-semibold transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg font-semibold transition-colors text-sm cursor-pointer"
           >
             <Edit2 size={16} />
             Edit
           </button>
           <button
             onClick={() => onDelete(movie.id)}
-            className="flex-1 flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-semibold transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-semibold transition-colors text-sm cursor-pointer"
           >
             <Trash2 size={16} />
             Hapus
