@@ -43,6 +43,7 @@ const MovieDetailModal = ({ isOpen, movie, onClose, onEdit, onDelete }) => {
                     <img
                       src={movie.poster_url}
                       alt={movie.title}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.style.display = "none";

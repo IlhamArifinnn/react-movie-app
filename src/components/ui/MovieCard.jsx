@@ -10,6 +10,7 @@ const MovieCard = ({ movie, onEdit, onDelete, onViewDetail }) => {
           <img
             src={movie.poster_url}
             alt={movie.title}
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
             onError={(e) => {
               e.target.style.display = "none";
